@@ -11,11 +11,11 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::orderBy('created_at', 'desc')->get();
-        
+
         if (Auth::user()->role === 'user') {
             return view('items.user_index', compact('items'));
         }
-        
+
         return view('items.index', compact('items'));
     }
 
@@ -28,7 +28,7 @@ class ItemController extends Controller
     public function create()
     {
         if (Auth::user()->role === 'user') {
-            abort(403, 'Forbidden - Anda tidak memiliki akses!');
+            abort(403, 'Forbidden - Anda tidak boleh akses!');
         }
         return view('items.create');
     }
@@ -36,7 +36,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         if (Auth::user()->role === 'user') {
-            abort(403, 'Forbidden - Anda tidak memiliki akses!');
+            abort(403, 'Forbidden - Anda tidak boleh akses!');
         }
 
         $request->validate([
@@ -60,9 +60,9 @@ class ItemController extends Controller
     public function edit($id)
     {
         if (Auth::user()->role === 'user') {
-            abort(403, 'Forbidden - Anda tidak memiliki akses!');
+            abort(403, 'Forbidden - Anda tidak boleh akses!');
         }
-        
+
         $item = Item::findOrFail($id);
         return view('items.edit', compact('item'));
     }
@@ -70,31 +70,31 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         if (Auth::user()->role === 'user') {
-            abort(403, 'Forbidden - Anda tidak memiliki akses!');
+            abort(403, 'Forbidden - Anda tidak boleh akses!');
         }
 
         $item = Item::findOrFail($id);
-        
+
         $request->validate([
             'nama' => 'required|min:3|max:100',
             'kode' => 'required|max:50|unique:items,kode,' . $id,
-            'stok' => 'required|integer|min:0',
+            'stok' => 'required|integer|min:1',
             'harga' => 'required|numeric|min:0',
             'deskripsi' => 'nullable'
         ]);
 
         $item->update($request->all());
-        return redirect('/items')->with('success', 'Item berhasil diupdate!');
+        return redirect('/items')->with('success', 'Item berhasil diubah!');
     }
 
     public function destroy($id)
     {
         if (Auth::user()->role === 'user') {
-            abort(403, 'Forbidden - Anda tidak memiliki akses!');
+            abort(403, 'Forbidden - Anda tidak boleh akses!');
         }
 
         $item = Item::findOrFail($id);
         $item->delete();
-        return redirect('/items')->with('success', 'Item berhasil dihapus!');
+        return redirect('/items')->with('success', 'Item berhasil ok!');
     }
 }
