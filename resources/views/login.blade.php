@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,39 +13,47 @@
             min-height: 100vh;
             font-family: 'Poppins', sans-serif;
         }
+
         .login-card {
-            background: rgba(255,255,255,0.95);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             max-width: 450px;
             margin: 100px auto;
         }
+
         .login-header {
             background: linear-gradient(135deg, #0077b6, #00b4d8);
             padding: 30px;
             text-align: center;
             color: white;
         }
+
         .login-header i {
             font-size: 60px;
             margin-bottom: 15px;
         }
+
         .login-header h3 {
             font-weight: bold;
         }
+
         .login-body {
             padding: 30px;
         }
+
         .form-control {
             border-radius: 12px;
             padding: 12px;
             border: 2px solid #e0e0e0;
         }
+
         .form-control:focus {
             border-color: #00b4d8;
-            box-shadow: 0 0 0 0.2rem rgba(0,180,216,0.25);
+            box-shadow: 0 0 0 0.2rem rgba(0, 180, 216, 0.25);
         }
+
         .btn-login {
             background: linear-gradient(135deg, #0077b6, #00b4d8);
             border: none;
@@ -54,12 +63,14 @@
             width: 100%;
             color: white;
         }
+
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,180,216,0.4);
+            box-shadow: 0 5px 15px rgba(0, 180, 216, 0.4);
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="login-card">
@@ -67,14 +78,15 @@
                 <i class="fas fa-water"></i>
                 <h3>Inventaris</h3>
                 <p>Silakan login untuk melanjutkan</p>
+                <h1>Dari Ammar</h1>
             </div>
             <div class="login-body">
-                @if(session('error'))
+                @if (session('error'))
                     <div class="alert alert-danger">
                         <i class="fas fa-exclamation-circle me-2"></i> {{ session('error') }}
                     </div>
                 @endif
-                
+
                 <form action="/login" method="POST">
                     @csrf
                     <div class="mb-3">
@@ -96,4 +108,5 @@
         </div>
     </div>
 </body>
+
 </html>
