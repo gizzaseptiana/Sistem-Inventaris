@@ -28,7 +28,7 @@ class ItemController extends Controller
     public function create()
     {
         if (Auth::user()->role === 'user') {
-            abort(403, 'Forbidden - Anda tidak boleh akses!');
+            abort(403, 'Forbidden - Anda tidak boleh masuk!');
         }
         return view('items.create');
     }
@@ -36,7 +36,7 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         if (Auth::user()->role === 'user') {
-            abort(403, 'Forbidden - Anda tidak boleh akses!');
+            abort(403, 'Forbidden - Anda tidak boleh masuk!');
         }
 
         $request->validate([
@@ -60,7 +60,7 @@ class ItemController extends Controller
     public function edit($id)
     {
         if (Auth::user()->role === 'user') {
-            abort(403, 'Forbidden - Anda tidak boleh akses!');
+            abort(403, 'Forbidden - Anda tidak boleh masuk!');
         }
 
         $item = Item::findOrFail($id);
@@ -70,7 +70,7 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         if (Auth::user()->role === 'user') {
-            abort(403, 'Forbidden - Anda tidak boleh akses!');
+            abort(403, 'Forbidden - Anda tidak boleh masuk!');
         }
 
         $item = Item::findOrFail($id);
@@ -90,11 +90,11 @@ class ItemController extends Controller
     public function destroy($id)
     {
         if (Auth::user()->role === 'user') {
-            abort(403, 'Forbidden - Anda tidak boleh akses!');
+            abort(403, 'Forbidden - Anda tidak boleh masuk!');
         }
 
         $item = Item::findOrFail($id);
         $item->delete();
-        return redirect('/items')->with('success', 'Item berhasil ok!');
+        return redirect('/items')->with('success', ' dihapus!');
     }
 }
